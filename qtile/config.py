@@ -32,7 +32,7 @@ group_decor = {
 
 mod = "mod4"              # Sets mod key to SUPER/WINDOWS
 myTerm = "alacritty"      # My terminal of choice
-myBrowser = "firefox" # My browser of choice
+myBrowser = "firefox"     # My browser of choice
 
 keys = [
          ### The essentials
@@ -173,7 +173,7 @@ groups = [
 			# it is placed in the upper third of screen by default.
 			DropDown(
 				"term",
-				"alacritty --class dropdown -e tmux_startup.sh",
+				"alacritty --class dropdown",
 				height=0.6,
 				on_focus_lost_hide=False,
 				opacity=1,
@@ -262,7 +262,7 @@ def init_widgets_main():
                        background = colors[0],
                        ),
               widget.GroupBox(
-					**group_decor,
+		    **group_decor,
                     font="Font Awesome 5 Brands",
                     borderwidth = 0,
                     active = colors[9],
@@ -384,126 +384,7 @@ def init_widgets_main():
 ]
     return widgets_list
 
-def init_widgets_secondary():
-    widgets_list = [
-             widget.Sep(
-                       linewidth = 0,
-                       padding = 6,
-                       foreground = colors[2],
-                       background = colors[0],
-                       ),
-             widget.Sep(
-                       linewidth = 0,
-                       padding = 6,
-                       foreground = colors[2],
-                       background = colors[0],
-                       ),
-            widget.CurrentLayout(
-                **group_decor,
-                background = colors[0],
-                foreground = colors[8],
-                padding = 10
-            ),
-            widget.Spacer(background = colors[0]),
-            widget.WindowName(
-                background=colors[0],
-                foreground=colors[12],
-                width=bar.CALCULATED,
-                empty_group_string="",
-                max_chars=130,
-                fmt = ' {}'
-            ),
-            widget.Spacer(background = colors[0]),
-            widget.PulseVolume(
-                **group_decor,
-                padding = 10,
-                foreground=colors[8],
-                background=colors[0],
-                limit_max_volume="True",
-                mouse_callbacks={"Button3": lambda: qtile.cmd_spawn("pavucontrol")},
-                fmt = ' {}'
-            ),
-            widget.Sep(
-                linewidth = 0,
-                padding = 6,
-                foreground = colors[2],
-                background = colors[0],
-            ),
-            widget.Systray(
-                **group_decor,
-                padding = 10,
-                icon_size = 20,
-                #foreground=colors[14],
-                background=colors[0],
-            ),
-            widget.Sep(
-                linewidth = 0,
-                padding = 6,
-                foreground = colors[2],
-                background = colors[0],
-            ),
-            widget.Wlan(
-                **group_decor,
-                padding = 10,
-                disconnected_message = 'Disconnected',
-                background = colors[0],
-                foreground = colors[8],
-                interface = 'wlp0s20f0u6',
-                format = ' {essid}',
-                mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("networkmanager_dmenu")},
-            ),
-            widget.Sep(
-                linewidth = 0,
-                padding = 6,
-                foreground = colors[2],
-                background = colors[0],
-            ),
-            widget.Clock(
-                **group_decor,
-                padding = 10,
-                format=" %a, %b %d",
-                background=colors[0],
-                foreground=colors[5],
-			),
-            widget.Sep(
-                linewidth = 0,
-                padding = 6,
-                foreground = colors[2],
-                background = colors[0],
-            ),
-            widget.Clock(
-                **group_decor,
-                padding = 10,
-                format="  %I:%M %p",
-                background=colors[0],
-                foreground=colors[4],
-			),
-            widget.Sep(
-                linewidth = 0,
-                padding = 6,
-                foreground = colors[2],
-                background = colors[0],
-            ),
-            widget.TextBox(
-                    **group_decor,
-					text="⏻",
-                    background = colors[0],
-					foreground=colors[13],
-					font="Font Awesome 5 Free Solid",
-					fontsize=15,
-					padding=10,
-					#mouse_callbacks={"Button1": lambda: open_powermenu},
-				),
-            widget.Sep(
-                linewidth = 0,
-                padding = 6,
-                foreground = colors[2],
-                background = colors[0],
-            ),
-]
-    return widgets_list
-
-screens = [Screen(top=bar.Bar(widgets=init_widgets_main(), opacity=1.0, size=35)),Screen(top=bar.Bar(widgets=init_widgets_secondary(),opacity=1.0,size=35))]
+screens = [Screen(top=bar.Bar(widgets=init_widgets_main(), opacity=1.0, size=35))]
 dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = False
@@ -517,7 +398,6 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='pinentry-gtk-2'), # GPG key password entry
     Match(wm_class='Unity'),          # Unity
     Match(wm_class='unityhub'),       # UnityHub
-    Match(wm_class='About Mozilla Firefox'),          # Firefox
 ], **layout_theme)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
