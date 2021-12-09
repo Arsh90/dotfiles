@@ -1,2 +1,2 @@
 <h1>My Dotfiles</h1>
-<p>Not the best. But i like it.</p>
+<p>Working On New Configs will be out soon!!</p>
